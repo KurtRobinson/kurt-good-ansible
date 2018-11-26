@@ -1,42 +1,42 @@
 ---
-  - name: Install tomcat
-    package:
-      name: tomcat
-      state: latest
-    notify:
-      - Enable tomcat
-  
-  - name: create ansible tomcat directory
-    file:
-      path: /usr/share/tomcat/webapps/ROOT
-      state: directory
+- name: Install tomcat
+  package:
+    name: tomcat
+    state: latest
+  notify:
+    - Enable tomcat
 
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+  notify:
+    - Start tomcat
+
+- name: index.html on App1
+  hosts: app1
+  gather_facts: false
+  become: true
+
+  tasks:
   - name: copy static index.html to tomcat webapps/ansible/index.html
     template:
-      src: index.html.j2
-      dest: /usr/share/tomcat/webapps/ROOT/index.html
-      mode: 0644
-    notify:
-      - Start tomcat
+      src: index.html.app1
+      dest: /usr/share/tomcat/webapps/ansible/index.html
 
-  - name: index.html on App1
-    hosts: app1
-    gather_facts: false
-    become: true
+- name: index.html on app 1
+  hosts: app2
+  gather_facts: false
+  become: true
 
-    tasks:
-    - name: copy static index.html to tomcat webapps/ansible/index.html
-      template:
-        src: index.html.app1
-        dest: /usr/share/tomcat/webapps/ansible/index.html
-
-  - name: index.html on app 1
-    hosts: app2
-    gather_facts: false
-    become: true
-
-    tasks:
-    - name: copy static index.html to tomcat webapps/ansible/index.html
-      template:
-        src: index.html.app2
-        dest: /usr/share/tomcat/webapps/ansible/index.html
+  tasks:
+  - name: copy static index.html to tomcat webapps/ansible/index.html
+    template:
+      src: index.html.app2
+      dest: /usr/share/tomcat/webapps/ansible/index.html
