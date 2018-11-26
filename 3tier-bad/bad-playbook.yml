@@ -25,6 +25,9 @@
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
+
+
+
 - name: Deploy HAProxy
   hosts: frontends
   gather_facts: false # remove later! speeds up testing
@@ -32,12 +35,16 @@
   roles:
     - role: HAProxy
 
+
+
 - name: Deploy tomcat
   hosts: apps
   gather_facts: false
   become: true
   roles:
     - role: tomcat
+
+
 
 
 - name: index.html on App1
@@ -51,6 +58,9 @@
       src: index.html.app1
       dest: /usr/share/tomcat/webapps/ansible/index.html
 
+
+
+
 - name: index.html on app 1
   hosts: app2
   gather_facts: false
@@ -62,12 +72,16 @@
       src: index.html.app2
       dest: /usr/share/tomcat/webapps/ansible/index.html
 
-      
+
+
+
+
 - name: deploy postgres
-  hosts: apps
+  hosts: 
+    - apps
+    - appdbs
   gather_facts: false
   become: true
-  hosts: appdbs
   tasks:
   - name: install progress
     command: "yum install -y postgresql-server"
@@ -93,6 +107,10 @@
     service:
       name: postgresql.service
       state: started
+
+
+
+
 
 - name: deploy apache
   hosts: apps
