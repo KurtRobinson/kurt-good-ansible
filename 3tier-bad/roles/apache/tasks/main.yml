@@ -1,0 +1,8 @@
+---
+- name: Install apache
+  yum:
+    name: httpd
+    state: latest
+  notify:
+    - Enable Apache
+    - Start Apache

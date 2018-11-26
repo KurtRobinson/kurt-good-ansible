@@ -1,0 +1,16 @@
+---
+- name: Install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+  notify:
+    - Enable postgres
+
+- name: Initilize postgres
+  run_once: true
+  command: 
+    with_items: 
+      - postgresql-setup initdb
+      - chkconfig postgresql on
+  notify:
+    - Start postgres

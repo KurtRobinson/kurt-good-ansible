@@ -1,0 +1,9 @@
+---
+  - name: Enable Apache
+    service:
+      name: httpd
+      enabled: yes
+  - name: Start Apache
+    service:
+      name: httpd
+      state: started
