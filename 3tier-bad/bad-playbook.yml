@@ -25,7 +25,7 @@
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
-- name: deploy haproxy
+- name: Deploy HAProxy
   hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
