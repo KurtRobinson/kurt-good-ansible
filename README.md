@@ -1,2 +1,2 @@
-# Ansible_Advanced
+# Good-Ansible
 Repository for RedHat Ansible Advanced training
