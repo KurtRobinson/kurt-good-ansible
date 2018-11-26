@@ -1,2 +1,2 @@
-# Ansible_Advanced
-Repository for RedHat Ansible Advanced training
+# bad-ansible
+Bad Ansible is a deliberately poorly written playbook and Ansible Environment for training purposes
