@@ -1,9 +1,0 @@
----
-  - name: enable HAProxy
-    service:
-      name: haproxy
-      state: started
-  - name: restart HAProxy
-    service:
-      name: haproxy
-      state: restarted
