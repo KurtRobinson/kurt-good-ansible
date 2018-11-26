@@ -8,7 +8,7 @@
 
 - name: Initilize postgres
   run_once: true
-  command: 
+  command: "{{item}}"
     with_items: 
       - postgresql-setup initdb
       - chkconfig postgresql on
