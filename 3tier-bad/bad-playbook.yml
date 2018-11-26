@@ -32,7 +32,6 @@
   roles:
     - role: HAProxy
 
-
 - name: deploy tomcat
   hosts: apps
   gather_facts: false
