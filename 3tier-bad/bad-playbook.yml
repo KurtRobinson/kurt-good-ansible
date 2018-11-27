@@ -53,3 +53,8 @@
   roles:
     - role: apache
   
+
+
+  #remember to remove the files in pgsql directory on appdb1 sudo vim /var/lib/pgsql/data/pg_hba.conf
+
+
