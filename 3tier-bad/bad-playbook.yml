@@ -42,34 +42,6 @@
     - role: tomcat
 
 
-
-#
-#- name: index.html on App1
-#  hosts: app1.b3ea.internal
-#  gather_facts: false
-#  become: true
-#
-#  tasks:
-#  - name: copy static index.html to tomcat webapps/ansible/index.html
-#    template:
-#      src: index.html.app1
-#      dest: /usr/share/tomcat/webapps/ansible/index.html
-
-
-#- name: index.html on App2
-#  hosts: app2.b3ea.internal
-#  gather_facts: false
-#  become: true
-#
-#  tasks:
-#  - name: copy static index.html to tomcat webapps/ansible/index.html
-#    template:
-#      src: index.html.app2
-#      dest: /usr/share/tomcat/webapps/ansible/index.html
-
-
-
-
 - name: deploy postgres
   hosts: 
     - apps
@@ -78,7 +50,6 @@
   become: true
   roles:
     - role: postgres
-
 
 - name: deploy apache
   hosts: apps
