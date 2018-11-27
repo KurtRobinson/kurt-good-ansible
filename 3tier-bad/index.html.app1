@@ -12,6 +12,6 @@
 
 <body>
     <h1>Ansible has done its job - Welcome to Tomcat on App1</h1>
-    <p>Test paragraph here for index.html.app1</p>
+    <p>Alpha</p>
 </body>
 </html>
