@@ -18,16 +18,12 @@
   gather_facts: false
   become: true
 
-
-
   tasks:
   - name: enable repos
     template:
       src: ./open_three-tier-app.repo
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
-
-
 
 
 - name: Deploy HAProxy
@@ -46,10 +42,8 @@
     - role: tomcat
 
 
-
-
 - name: index.html on App1
-  hosts: app1
+  hosts: app1.b3ea.internal
   gather_facts: false
   become: true
 
@@ -62,8 +56,8 @@
 
 
 
-- name: index.html on app 1
-  hosts: app2
+- name: index.html on App2
+  hosts: app2.b3ea.internal
   gather_facts: false
   become: true
 
