@@ -14,3 +14,7 @@
     - chkconfig postgresql on
   notify:
     - Start postgres
+
+#How to make the above itempotent?
+#Relates to what we are doing with server deployment
+#Can we do this?
