@@ -27,7 +27,7 @@
       mode: 0644
 
 
-- name: deploy load balancer tier
+- name: setup lb
   hosts: frontends
   gather_facts: false
   become: true
@@ -35,16 +35,16 @@
     - role: loadbalancer-tier
 
 
-- name: deploy application tier
+- name: setup apps
   hosts: apps
   gather_facts: false
   become: true
   roles:
     - role: application-tier
+    
 
 
-
-- name: deploy database tier
+- name: setup db
   hosts: appdbs
   gather_facts: false
   become: true

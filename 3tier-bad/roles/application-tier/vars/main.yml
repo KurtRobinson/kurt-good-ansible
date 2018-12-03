@@ -1,3 +1,4 @@
 # /roles/tomcat/vars/main.yml
-tomcat_dir: /usr/share/tomcat/webapps/ROOT
-tomcat_mode: 0644
+service: tomcat
+dir: /usr/share/tomcat/webapps/ROOT
+mode: 0644

@@ -1,21 +1,21 @@
 ---
-- name: install haproxy
+- name: install {{ service }}
   yum:
-    name: haproxy
+    name: "{{ service }}"
     state: latest
 
-- name: enable haproxy
+- name: enable {{ service }}
   service:
-    name: haproxy
+    name: "{{ service }}"
     enabled: yes
 
-- name: configure haproxy
+- name: configure {{ service }}
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
-    mode: 0644
+    mode: "{{ mode }}"
 
-- name: restart HAProxy
+- name: restart {{ service }}
   service:
-    name: haproxy
+    name: "{{ service }}"
     state: restarted

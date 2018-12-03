@@ -1,26 +1,26 @@
 ---
-- name: install tomcat
+- name: install {{ service }}
   yum:
-    name: tomcat
+    name: "{{ service }}"
     state: latest
 
-- name: enable tomcat
+- name: enable {{ service }}
   service:
-    name: tomcat
+    name: "{{ service }}"
     enabled: yes
 
-- name: create Ansible tomcat directory
+- name: create root {{ service }} directory
   file:
-    path: "{{ tomcat_dir }}"
+    path: "{{ dir }}"
     state: directory
 
-- name: copy static index.html to tomcat webapps/ROOT/index.html
+- name: copy static index.html to tomcat {{ dir }}
   template:
     src: index.html.j2
-    dest: "{{ tomcat_dir }}/index.html"
-    mode: "{{ tomcat_mode }}"
+    dest: "{{ dir }}/index.html"
+    mode: "{{ mode }}"
 
-- name: restart tomcat
+- name: restart {{ service }}
   service:
-    name: tomcat
+    name: "{{ service }}"
     state: restarted
