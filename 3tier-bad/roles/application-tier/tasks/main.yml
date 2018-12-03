@@ -1,2 +1,26 @@
 ---
-# tasks file for application-tier
+- name: Install tomcat
+  package:
+    name: tomcat
+    state: latest
+  tags:
+    - packages
+  notify:
+    - Enable tomcat
+
+- name: Create Ansible tomcat directory
+  file:
+    path: "{{ tomcat_dir }}"
+    state: directory
+  tags:
+    - filemgmt
+
+- name: Copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.j2
+    dest: "{{ tomcat_dir }}/index.html"
+    mode: "{{ tomcat_mode }}"
+  tags:
+    - filemgmt
+  notify:
+    - Start tomcat

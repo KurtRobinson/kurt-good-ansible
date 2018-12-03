@@ -1,9 +1,0 @@
----
-  - name: Enable tomcat
-    service:
-      name: tomcat
-      enabled: yes
-  - name: Start tomcat
-    service:
-      name: tomcat
-      state: started

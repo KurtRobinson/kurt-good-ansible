@@ -1,2 +1,22 @@
 ---
-# tasks file for database-tier
+- name: Install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+  tags:
+    - packages
+  notify:
+    - Enable postgres
+
+- name: Initilize postgres
+  run_once: true
+  command: "{{item}}" 
+  with_items: 
+    - postgresql-setup initdb
+    - chkconfig postgresql on
+  notify:
+    - Start postgres
+
+#How to make the above itempotent?
+#Relates to what we are doing with server deployment
+#Can we do this?

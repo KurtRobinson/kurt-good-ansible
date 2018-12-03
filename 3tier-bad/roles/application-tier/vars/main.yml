@@ -1,2 +1,3 @@
----
-# vars file for application-tier
+# /roles/tomcat/vars/main.yml
+tomcat_dir: /usr/share/tomcat/webapps/ansible
+tomcat_mode: 0644
