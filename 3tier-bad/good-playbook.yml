@@ -41,7 +41,7 @@
   become: true
   roles:
     - role: application-tier
-    
+
 
 
 - name: setup db
@@ -49,7 +49,7 @@
   gather_facts: false
   become: true
   roles:
-    - role: database-tier
+    - role: geerlingguy.postgresql
 
 
   #remember to remove the files in pgsql directory on appdb1 sudo vim /var/lib/pgsql/data/pg_hba.conf
