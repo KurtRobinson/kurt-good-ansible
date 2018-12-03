@@ -46,7 +46,7 @@
 
 - name: setup db
   hosts: appdbs
-  gather_facts: true
+  gather_facts: true #must be set to true for postgresql role to work
   become: true
   roles:
     - {role: geerlingguy.postgresql, tags: db}
