@@ -17,16 +17,13 @@
   hosts: all
   gather_facts: false
   become: true
-  with_vars:
-    - repo: open_three-tier-app.repo
-    - mode: 0644
 
   tasks:
   - name: enable repos
     template:
-      src: "./{{ repo }}"
-      dest: "/etc/yum.repos.d/{{ repo }}"
-      mode: "{{ mode }}"
+      src: ./open_three-tier-app.repo
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+      mode: 0644
 
 - name: Deploy HAProxy
   hosts: frontends
