@@ -3,6 +3,8 @@
   yum:
     name: postgresql-server
     state: latest
+  tags:
+    - packages
   notify:
     - Enable postgres
 

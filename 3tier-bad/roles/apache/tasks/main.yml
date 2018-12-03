@@ -3,6 +3,8 @@
   yum:
     name: httpd
     state: latest
+ tags:
+    - packages
   notify:
     - Enable Apache
     - Start Apache
