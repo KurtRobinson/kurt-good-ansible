@@ -3,24 +3,34 @@
   yum:
     name: "{{ service }}"
     state: latest
+  tags:
+    - install
 
 - name: enable {{ service }}
   service:
     name: "{{ service }}"
     enabled: yes
+  tags:
+    - install
 
 - name: create root {{ service }} directory
   file:
     path: "{{ dir }}"
     state: directory
+  tags:
+    - config
 
 - name: copy static index.html to tomcat {{ dir }}
   template:
     src: index.html.j2
     dest: "{{ dir }}/index.html"
     mode: "{{ mode }}"
+  tags:
+    - config
 
 - name: restart {{ service }}
   service:
     name: "{{ service }}"
     state: restarted
+  tags:
+    - start

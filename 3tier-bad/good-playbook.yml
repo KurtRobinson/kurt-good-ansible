@@ -22,7 +22,7 @@
   tasks:
   - name: enable repos
     template:
-      src: ./open_three-tier-app.repo
+      src: ./open_three-tier-app.repo #need to hide this in ansible vault
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
@@ -32,7 +32,7 @@
   gather_facts: false
   become: true
   roles:
-    - role: loadbalancer-tier
+    - {role: loadbalancer-tier, tags: lb}
 
 
 - name: setup apps
@@ -40,16 +40,16 @@
   gather_facts: false
   become: true
   roles:
-    - role: application-tier
+    - {role: application-tier, tags: apps}
 
 
 
 - name: setup db
   hosts: appdbs
-  gather_facts: false
+  gather_facts: true
   become: true
   roles:
-    - role: geerlingguy.postgresql
+    - {role: geerlingguy.postgresql, tags: db}
 
 
   #remember to remove the files in pgsql directory on appdb1 sudo vim /var/lib/pgsql/data/pg_hba.conf

@@ -3,19 +3,27 @@
   yum:
     name: "{{ service }}"
     state: latest
+  tags:
+    - install
 
 - name: enable {{ service }}
   service:
     name: "{{ service }}"
     enabled: yes
+  tags:
+    - install
 
 - name: configure {{ service }}
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     mode: "{{ mode }}"
+  tags:
+    - config
 
 - name: restart {{ service }}
   service:
     name: "{{ service }}"
     state: restarted
+  tags:
+      - start
