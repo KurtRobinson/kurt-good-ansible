@@ -27,15 +27,12 @@
       mode: 0644
 
 
-
-
 - name: deploy load balancer tier
   hosts: frontends
   gather_facts: false
   become: true
   roles:
     - role: loadbalancer-tier
-
 
 
 - name: deploy application tier
