@@ -26,34 +26,33 @@
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
 
-- name: Deploy HAProxy
+
+
+
+- name: deploy load balancer tier
   hosts: frontends
   gather_facts: false
   become: true
   roles:
-    - role: haproxy
+    - role: loadbalancer-tier
 
-- name: Deploy tomcat
+
+
+- name: deploy application tier
   hosts: apps
   gather_facts: false
   become: true
   roles:
-    - role: tomcat
+    - role: application-tier
 
-- name: Deploy postgres
+
+
+- name: deploy database tier
   hosts: appdbs
   gather_facts: false
   become: true
   roles:
-    - role: postgres
-
-- name: Deploy apache
-  hosts: apps
-  gather_facts: false
-  become: true
-  roles:
-    - role: apache
-  
+    - role: database-tier
 
 
   #remember to remove the files in pgsql directory on appdb1 sudo vim /var/lib/pgsql/data/pg_hba.conf
