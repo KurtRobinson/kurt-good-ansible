@@ -1,21 +1,27 @@
 ---
-- name: Install postgres
+- name: install postgres
   yum:
     name: postgresql-server
     state: latest
-  tags:
-    - packages
-  notify:
-    - Enable postgres
 
-- name: Initilize postgres
+- name: enable postgres
+  service:
+    name: postgresql
+    enabled: yes
+
+- name: initilize postgres
   run_once: true
   command: "{{item}}" 
   with_items: 
     - postgresql-setup initdb
     - chkconfig postgresql on
-  notify:
-    - Start postgres
+
+- name: start postgres
+  service:
+    name: postgresql.service
+    state: started
+
+
 
 #How to make the above itempotent?
 #Relates to what we are doing with server deployment

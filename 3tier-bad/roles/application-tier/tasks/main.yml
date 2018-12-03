@@ -1,10 +1,10 @@
 ---
 - name: install tomcat
-  package:
+  yum:
     name: tomcat
     state: latest
 
-- name: Enable tomcat
+- name: enable tomcat
   service:
     name: tomcat
     enabled: yes
@@ -20,7 +20,7 @@
     dest: "{{ tomcat_dir }}/index.html"
     mode: "{{ tomcat_mode }}"
 
-- name: retart tomcat
+- name: restart tomcat
   service:
     name: tomcat
     state: restarted
