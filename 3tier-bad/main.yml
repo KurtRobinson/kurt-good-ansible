@@ -13,6 +13,11 @@
 #   Bare variables
 #   No use of handlers
 
+- hosts: jumpbox
+  gather_facts: true
+  roles:
+  - name: osp-facts
+
 
 - name: configuration
   hosts: all
