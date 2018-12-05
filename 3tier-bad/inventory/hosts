@@ -1,19 +1,18 @@
-[frontends] # These are the frontend servers
-frontend1 ansible_host=frontend1."{{ GUID }}".internal
-
-[apps] ## These are the apps servers
-app1 ansible_host=app1."{{ GUID }}".internal
-app2 ansible_host=app2."{{ GUID }}".internal
-
-[appdbs] # These are the appdb servers
-appdb1 ansible_host=appdb1."{{ GUID }}".internal
-
-[internal:children]
-frontends
-apps
-appdbs
+[all:vars]
+#GUID=b9f3
 
 [internal:vars]
+
+###########################################################################
+### Ansible Vars
+###########################################################################
 timeout=60
 ansible_become=yes
-ansible_user=ec2-user
+ansible_ssh_user=ec2-user
+
+[appdbs:children]
+tag_AnsibleGroup_appdbs
+[apps:children]
+tag_AnsibleGroup_apps
+[frontends:children]
+tag_AnsibleGroup_frontends
