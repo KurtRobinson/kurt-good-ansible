@@ -19,24 +19,12 @@
   - name: osp-facts
 
 
-#- name: configuration
-#  hosts: frontends, apps, appdbs
-#  gather_facts: false
-#  become: true
-
-#  tasks:
-#  - name: enable repos
-#    template:
-#      src: ./open_three-tier-app.repo #need to hide this in ansible vault
-#      dest: /etc/yum.repos.d/open_three-tier-app.repo
-#      mode: 0644
-
-
 - name: setup lb
   hosts: frontends
   gather_facts: false
   become: true
   roles:
+    - {role: base, tags: base}
     - {role: loadbalancer-tier, tags: lb}
 
 
@@ -45,6 +33,7 @@
   gather_facts: false
   become: true
   roles:
+    - {role: base, tags: base}
     - {role: application-tier, tags: apps}
 
 
@@ -54,6 +43,7 @@
   gather_facts: true #must be set to true for postgresql role to work
   become: true
   roles:
+    - {role: base, tags: base}
     - {role: geerlingguy.postgresql, tags: db}
 
 
