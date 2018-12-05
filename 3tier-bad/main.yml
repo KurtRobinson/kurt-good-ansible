@@ -19,17 +19,17 @@
   - name: osp-facts
 
 
-- name: configuration
-  hosts: frontends, apps, appdbs
-  gather_facts: false
-  become: true
+#- name: configuration
+#  hosts: frontends, apps, appdbs
+#  gather_facts: false
+#  become: true
 
-  tasks:
-  - name: enable repos
-    template:
-      src: ./open_three-tier-app.repo #need to hide this in ansible vault
-      dest: /etc/yum.repos.d/open_three-tier-app.repo
-      mode: 0644
+#  tasks:
+#  - name: enable repos
+#    template:
+#      src: ./open_three-tier-app.repo #need to hide this in ansible vault
+#      dest: /etc/yum.repos.d/open_three-tier-app.repo
+#      mode: 0644
 
 
 - name: setup lb
